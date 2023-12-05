@@ -31,4 +31,4 @@ Este proyecto simula el clásico problema de los filósofos, donde un grupo de f
 
 Para ejecutar el programa obligatorio:
 
-  ./philosophers number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+    ./philosophers number_philosophers time_die time_eat time_sleep [number_times_must_eat]
