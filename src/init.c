@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/02 19:03:31 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:58:36 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,22 @@ int	ft_check_init(t_program *program, int argc)
 		return (printf("Error\nWrong time to sleep\n"), EXIT_FAILURE);
 	if (argc == 6)
 	{
-		if (program->number_eats <= 0)
-			return (printf("Error\nWrong number of eats\n"), EXIT_FAILURE);
+		if (program->number_meals <= 0)
+			return (printf("Error\nWrong number of meals\n"), EXIT_FAILURE);
 	}
 	return (1);
 }
 
 void	ft_init_argues(t_program *program, int argc, char *argv[])
 {
-	int	flag;
-
-	flag = -1;
 	program->number_philos = ft_atol(argv[1]);
 	program->time_death = ft_atol(argv[2]);
 	program->time_eat = ft_atol(argv[3]);
 	program->time_sleep = ft_atol(argv[4]);
 	if (argc == 5)
-		program->number_eats = -1;
+		program->number_meals = -1;
 	if (argc == 6)
-		program->number_eats = ft_atol(argv[5]);
+		program->number_meals = ft_atol(argv[5]);
 }
 
 void	ft_init_all(t_program *program, int argc, char *argv[])

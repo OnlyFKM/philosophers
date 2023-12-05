@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/02 19:03:46 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:17:11 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_program
 	int				time_death;
 	int				time_sleep;
 	int				time_eat;
-	int				number_eats;
+	int				number_meals;
 	int				philo_died;
 	int				all_philos_have_eaten;
 	long long		first_timestamp;

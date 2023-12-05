@@ -6,13 +6,23 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:27 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/02 18:45:03 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:12:54 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+void	*ft_routine(void *arg)
+{
+	t_philo	*philo;
 
+	philo = arg;
+	while (1)
+	{
+		printf("my id: %d\n", philo->philo_id);
+	}
+	return (NULL);
+}
 
 int	ft_check_integers(char *argv[])
 {
@@ -37,14 +47,15 @@ int	ft_check_integers(char *argv[])
 int	main(int argc, char *argv[])
 {
 	t_program	program;
-	int			i;
 
-	i = 1;
 	if (argc == 5 || argc == 6)
 	{
 		if (ft_check_integers(argv) == -1)
 			return (EXIT_FAILURE);
 		ft_init_all(&program, argc, argv);
+		pthread_create(&program.philo[0].thread_id, NULL, ft_routine,
+			&program.philo[0]);
+		pthread_join(program.philo[0].thread_id, NULL);
 	}
 	else
 		return (printf("Error\nWrong number of argues\n"), EXIT_FAILURE);
