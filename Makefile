@@ -1,10 +1,11 @@
 NAME = philo
 
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = -Wall -Werror -Wextra
 
 SRCS = src/main.c\
 	src/init.c\
 	src/utils.c\
+	src/philos.c\
 
 CC = gcc
 
@@ -27,3 +28,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+// -fsanitize=thread -g3 meterlo en NAME antes de -g

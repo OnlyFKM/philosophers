@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/02 19:00:18 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:05:28 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ size_t	ft_get_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		printf("Error\nFailed in the function get time of day\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	ft_printf_msg(t_program *program, int id, char *str)
+{
+	pthread_mutex_lock(&(program->write));
+	printf("%lli %d %s\n", (ft_get_time() - program->first_timestamp), id, str);
+	pthread_mutex_unlock(&(program->write));
 }
 
 int	ft_are_all_digits(const char *str)
