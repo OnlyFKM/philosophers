@@ -6,29 +6,11 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:13:07 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/13 18:26:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:52:33 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-void	ft_sleeping(t_program *program)
-{
-	(void) program;
-	printf("Aqui estoy\n");
-}
-
-void	ft_eating(t_program *program)
-{
-	pthread_mutex_lock(&(program->philo->left_fork_id));
-	ft_printf_msg(program, program->philo->philo_id, "has taken a fork");
-	pthread_mutex_lock(&(program->philo->right_fork_id));
-	ft_printf_msg(program, program->philo->philo_id, "has taken a fork");
-	ft_printf_msg(program, program->philo->philo_id, "is eating");
-	usleep(program->time_eat * 1000);
-	pthread_mutex_unlock(&(program->philo->left_fork_id));
-	pthread_mutex_unlock(&(program->philo->right_fork_id));
-}
 
 void	ft_free_philos(t_program *program)
 {
@@ -51,31 +33,20 @@ void	ft_free_philos(t_program *program)
 	pthread_mutex_destroy((&(program->write)));
 }
 
-void	ft_routine(void)
-{
-	t_program	*program;
-
-	if (!(program->philo->philo_id % 2))
-		usleep(15000);
-	while (1)
-	{
-		ft_eating(program);
-		ft_printf_msg(program, program->philo->philo_id, "is sleeping");
-		ft_sleeping(program);
-		ft_printf_msg(program, program->philo->philo_id, "is thinking");
-		if (program->all_philos_have_eaten || program->philo_died)
-			break ;
-	}
-}
-
 void	ft_one_philo(t_program *program)
 {
-	pthread_mutex_lock(&(program->philo->left_fork_id));
+	pthread_mutex_lock(&(program->forks[program->philo->left_fork_id]));
 	ft_printf_msg(program, program->number_philos, "has taken a fork");
 	ft_sleeping(program);
-	pthread_mutex_unlock(&(program->philo->left_fork_id));
+	pthread_mutex_unlock(&(program->forks[program->philo->left_fork_id]));
 	ft_printf_msg(program, program->philo->philo_id, "has died");
 	ft_free_philos(program);
+}
+
+void	ft_check_if_dead(t_program *program)
+{
+	ft_printf_msg(program, program->philo->philo_id, "died");
+	program->philo_died = 1;
 }
 
 int	ft_philosopher(t_program *program)
