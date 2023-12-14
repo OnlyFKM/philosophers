@@ -6,20 +6,11 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/12 17:05:28 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:59:39 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-size_t	ft_get_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		printf("Error\nFailed in the function get time of day\n");
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
 
 void	ft_printf_msg(t_program *program, int id, char *str)
 {

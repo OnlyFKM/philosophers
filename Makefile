@@ -6,6 +6,8 @@ SRCS = src/main.c\
 	src/init.c\
 	src/utils.c\
 	src/philos.c\
+	src/routine.c\
+	src/time.c\
 
 CC = gcc
 

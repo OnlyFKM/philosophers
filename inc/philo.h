@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/12 17:43:10 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:22:21 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 struct	s_program;
 
-typedef struct s_philo
+typedef struct s_philos
 {
 	struct s_program	*program;
 	int					philo_id;
@@ -58,7 +58,6 @@ int			ft_check_integers(char *argv[]);
 int			ft_are_all_digits(const char *str);
 long long	ft_atol(const char *str);
 void		ft_printf_msg(t_program *program, int id, char *str);
-size_t		ft_get_time(void);
 
 // init.c
 void		ft_init_all(t_program *program, int argc, char *argv[]);
@@ -70,7 +69,15 @@ void		ft_init_philo(t_program *program);
 // philos.c
 int			ft_philosopher(t_program *program);
 void		ft_one_philo(t_program *program);
-void		ft_routine(void);
 void		ft_free_philos(t_program *program);
+
+// routine.c
+void		*ft_routine(void *arg);
+void		ft_eating(t_program *program);
+
+// time.c
+long		ft_get_time(void);
+long		ft_difference_time(t_program *program);
+void		ft_usleep(int time);
 
 #endif
