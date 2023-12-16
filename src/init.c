@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/14 16:43:53 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:29:04 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_init_all(t_program *program, int argc, char *argv[])
 {
 	ft_init_argues(program, argc, argv);
 	ft_check_init(program, argc);
-	ft_init_mutex(program);
+	/* program->philo = malloc(sizeof(t_philo) * program->number_philos);
+	program->forks = malloc(sizeof(pthread_mutex_t) * program->number_philos); */
 	ft_init_philo(program);
+	ft_init_mutex(program);
 }

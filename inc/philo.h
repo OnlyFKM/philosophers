@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/14 17:22:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:28:38 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		ft_init_philo(t_program *program);
 int			ft_philosopher(t_program *program);
 void		ft_one_philo(t_program *program);
 void		ft_free_philos(t_program *program);
+void		ft_check_if_dead(t_program *program);
 
 // routine.c
 void		*ft_routine(void *arg);
