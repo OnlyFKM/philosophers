@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/16 15:29:04 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:19:05 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	ft_init_philo(t_program *program)
 	{
 		program->philo[i].philo_id = i + 1;
 		program->philo[i].left_fork_id = i;
+		/* if (i != program->number_philos)
+			program->philo[i].right_fork_id = (i + 1);
+		else */
 		program->philo[i].right_fork_id = (i + 1) % program->number_philos;
 		program->philo[i].times_philo_has_eaten = 0;
 		program->philo[i].time_last_meal = 0;
@@ -84,8 +87,6 @@ void	ft_init_all(t_program *program, int argc, char *argv[])
 {
 	ft_init_argues(program, argc, argv);
 	ft_check_init(program, argc);
-	/* program->philo = malloc(sizeof(t_philo) * program->number_philos);
-	program->forks = malloc(sizeof(pthread_mutex_t) * program->number_philos); */
 	ft_init_philo(program);
 	ft_init_mutex(program);
 }

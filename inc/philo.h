@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/16 15:28:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:04:36 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		ft_check_if_dead(t_program *program);
 
 // routine.c
 void		*ft_routine(void *arg);
-void		ft_eating(t_program *program);
+void		ft_eating(t_philo *philo);
 
 // time.c
 long		ft_get_time(void);

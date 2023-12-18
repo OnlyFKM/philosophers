@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:13:07 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/16 14:56:09 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:26:27 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_free_philos(t_program *program)
 	}
 	pthread_mutex_destroy((&(program->meal_mutex)));
 	pthread_mutex_destroy((&(program->write)));
-	free(program->philo);
 }
 
 void	ft_one_philo(t_program *program)
@@ -51,10 +50,11 @@ void	ft_check_if_dead(t_program *program)
 
 	death_time = program->time_death;
 	difference = ft_get_time() - program->philo->time_last_meal;
-	if (difference > death_time)
+	if (difference >= death_time)
 	{
 		ft_printf_msg(program, program->philo->philo_id, "died");
 		program->philo_died = 1;
+		pthread_mutex_lock(&(program->write));
 	}
 }
 
@@ -72,6 +72,7 @@ int	ft_philosopher(t_program *program)
 		program->philo[i].time_last_meal = ft_get_time();
 		i++;
 	}
+	//ft_check_if_dead(program);
 	if (program->number_philos == 1)
 		ft_one_philo(program);
 	ft_free_philos(program);
