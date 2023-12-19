@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 16:17:34 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:01:22 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	ft_check_all_eat(t_program *program)
 		}
 		if (i == program->number_philos)
 		{
-			program->all_philos_have_eaten = 1;
-			break ;
+			program->all_philos_have_eaten++;
+			if (program->all_philos_have_eaten == program->number_meals)
+				break ;
 		}
 		if (program->philo_died)
 			break ;

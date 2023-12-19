@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 12:04:36 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:17:15 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ long long	ft_atol(const char *str);
 void		ft_printf_msg(t_program *program, int id, char *str);
 
 // init.c
-void		ft_init_all(t_program *program, int argc, char *argv[]);
+int			ft_init_all(t_program *program, int argc, char *argv[]);
 void		ft_init_argues(t_program *program, int argc, char *argv[]);
 int			ft_check_init(t_program *program, int argc);
 int			ft_init_mutex(t_program *program);

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:27 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/12 17:03:55 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:58:33 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	main(int argc, char *argv[])
 	{
 		if (ft_check_integers(argv) == -1)
 			return (EXIT_FAILURE);
-		ft_init_all(&program, argc, argv);
+		if (ft_init_all(&program, argc, argv) == 1)
+			return (1);
 		if (ft_philosopher(&program) == -1)
-			return (printf("Error\nFailure creating threads\n"));
+			return (printf("Error\nFailure creating threads\n"), EXIT_FAILURE);
 	}
 	else
 		return (printf("Error\nWrong number of argues\n"), EXIT_FAILURE);

@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 SRCS = src/main.c\
 	src/init.c\

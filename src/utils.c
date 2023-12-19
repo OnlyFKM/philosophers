@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 16:27:36 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:01:13 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	ft_printf_msg(t_program *program, int id, char *str)
 {
 	pthread_mutex_lock(&(program->write));
-	if (program->philo_died != 1 && program->number_meals != program->all_philos_have_eaten)
-		printf("%lli %d %s\n", (ft_get_time() - program->first_timestamp), id, str);
+	printf("%lli %d %s\n", (ft_get_time() - program->first_timestamp), id, str);
 	pthread_mutex_unlock(&(program->write));
 }
 

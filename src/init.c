@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 16:19:05 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:57:01 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	ft_init_philo(t_program *program)
 	{
 		program->philo[i].philo_id = i + 1;
 		program->philo[i].left_fork_id = i;
-		/* if (i != program->number_philos)
-			program->philo[i].right_fork_id = (i + 1);
-		else */
 		program->philo[i].right_fork_id = (i + 1) % program->number_philos;
 		program->philo[i].times_philo_has_eaten = 0;
 		program->philo[i].time_last_meal = 0;
@@ -68,7 +65,7 @@ int	ft_check_init(t_program *program, int argc)
 		if (program->number_meals <= 0)
 			return (printf("Error\nWrong number of meals\n"), EXIT_FAILURE);
 	}
-	return (1);
+	return (0);
 }
 
 void	ft_init_argues(t_program *program, int argc, char *argv[])
@@ -83,10 +80,12 @@ void	ft_init_argues(t_program *program, int argc, char *argv[])
 		program->number_meals = ft_atol(argv[5]);
 }
 
-void	ft_init_all(t_program *program, int argc, char *argv[])
+int	ft_init_all(t_program *program, int argc, char *argv[])
 {
 	ft_init_argues(program, argc, argv);
-	ft_check_init(program, argc);
+	if (ft_check_init(program, argc) == 1)
+		return (EXIT_FAILURE);
 	ft_init_philo(program);
 	ft_init_mutex(program);
+	return (0);
 }
