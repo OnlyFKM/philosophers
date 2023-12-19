@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 12:12:43 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:31:42 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,14 @@ void	*ft_routine(void *arg)
 	philo = (t_philo *)arg;
 	program = philo->program;
 	if (philo->philo_id % 2)
-		ft_usleep(100);
+		ft_usleep(75);
 	while (program->philo_died != 1)
 	{
 		ft_eating(philo);
 		ft_check_if_dead(program);
-		/* if (program->all_philos_have_eaten == 1)
-			return (NULL); */
 		ft_printf_msg(program, philo->philo_id, "is sleeping");
 		ft_usleep(program->time_sleep);
-		/* if (program->all_philos_have_eaten == 1)
-			return (NULL); */
 		ft_printf_msg(program, philo->philo_id, "is thinking");
-		/* if (program->all_philos_have_eaten == 1)
-			return (NULL); */
 	}
 	return (NULL);
 }

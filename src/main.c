@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:27 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 12:21:52 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:23:02 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int	main(int argc, char *argv[])
 	}
 	else
 		return (printf("Error\nWrong number of argues\n"), EXIT_FAILURE);
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
