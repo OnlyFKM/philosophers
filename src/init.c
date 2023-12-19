@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 12:16:29 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:32:52 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_init_argues(t_program *program, int argc, char *argv[])
 	program->time_death = ft_atol(argv[2]);
 	program->time_eat = ft_atol(argv[3]);
 	program->time_sleep = ft_atol(argv[4]);
+	program->finish = 0;
 	if (argc == 5)
 		program->number_meals = -1;
 	if (argc == 6)

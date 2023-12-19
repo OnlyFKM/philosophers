@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 19:17:15 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:38:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_program
 	int				time_sleep;
 	int				time_eat;
 	int				number_meals;
-	int				philo_died;
 	int				all_philos_have_eaten;
+	int				finish;
 	long long		first_timestamp;
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	forks[200];
@@ -70,7 +70,7 @@ void		ft_init_philo(t_program *program);
 int			ft_philosopher(t_program *program);
 void		ft_one_philo(t_program *program);
 void		ft_free_philos(t_program *program);
-void		ft_check_if_dead(t_program *program);
+void		ft_check_if_dead(t_philo *philo);
 
 // routine.c
 void		*ft_routine(void *arg);
