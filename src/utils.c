@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 17:01:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:17:35 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_are_all_digits(const char *str)
 	while (*str)
 	{
 		if (!(*str >= '0' && *str <= '9'))
-			return (-1);
+			return (EXIT_FAILURE);
 		str++;
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 long long	ft_atol(const char *str)

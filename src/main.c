@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:27 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 10:58:33 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:21:52 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,24 @@ int	ft_check_integers(char *argv[])
 	i = 1;
 	while (argv[i])
 	{
-		if (ft_are_all_digits(argv[i++]) == -1)
-			return (printf("Error\nArgues must be positive integers\n"), -1);
+		if (ft_are_all_digits(argv[i]) == EXIT_FAILURE)
+		{
+			printf("Error\nArgues must be positive integers\n");
+			return (EXIT_FAILURE);
+		}
+		i++;
 	}
 	i = 1;
 	while (argv[i])
 	{
 		if (ft_atol(argv[i]) > INT_MAX)
-			return (printf("Error\nAn integer is too high\n"), -1);
+		{
+			printf("Error\nAn integer is too high\n");
+			return (EXIT_FAILURE);
+		}
 		i++;
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char *argv[])
@@ -38,14 +45,14 @@ int	main(int argc, char *argv[])
 
 	if (argc == 5 || argc == 6)
 	{
-		if (ft_check_integers(argv) == -1)
+		if (ft_check_integers(argv) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		if (ft_init_all(&program, argc, argv) == 1)
-			return (1);
-		if (ft_philosopher(&program) == -1)
+		if (ft_init_all(&program, argc, argv) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+		if (ft_philosopher(&program) == EXIT_FAILURE)
 			return (printf("Error\nFailure creating threads\n"), EXIT_FAILURE);
 	}
 	else
 		return (printf("Error\nWrong number of argues\n"), EXIT_FAILURE);
-	return (0);
+	return (EXIT_FAILURE);
 }

@@ -6,13 +6,13 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 12:05:50 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:12:43 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	ft_check_all_eat(t_philo *philo)
+int	ft_check_all_eat(t_philo *philo)
 {
 	t_program	*program;
 
@@ -20,7 +20,11 @@ void	ft_check_all_eat(t_philo *philo)
 	if (philo->times_philo_has_eaten == program->number_meals)
 		program->all_philos_have_eaten++;
 	if (program->all_philos_have_eaten == program->number_philos)
+	{
 		exit (EXIT_FAILURE);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
 
 void	ft_eating(t_philo *philo)

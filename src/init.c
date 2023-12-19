@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 10:57:01 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:16:29 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_init_mutex(t_program *program)
 	if (pthread_mutex_init(&(program->meal_mutex), NULL))
 		return (printf("Error\nMutex initialization failed for meal\n"),
 			EXIT_FAILURE);
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	ft_check_init(t_program *program, int argc)
@@ -65,7 +65,7 @@ int	ft_check_init(t_program *program, int argc)
 		if (program->number_meals <= 0)
 			return (printf("Error\nWrong number of meals\n"), EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 void	ft_init_argues(t_program *program, int argc, char *argv[])
@@ -83,7 +83,7 @@ void	ft_init_argues(t_program *program, int argc, char *argv[])
 int	ft_init_all(t_program *program, int argc, char *argv[])
 {
 	ft_init_argues(program, argc, argv);
-	if (ft_check_init(program, argc) == 1)
+	if (ft_check_init(program, argc) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_init_philo(program);
 	ft_init_mutex(program);
