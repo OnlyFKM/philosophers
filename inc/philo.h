@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 14:38:10 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:25:59 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		ft_init_philo(t_program *program);
 int			ft_philosopher(t_program *program);
 void		ft_one_philo(t_program *program);
 void		ft_free_philos(t_program *program);
-void		ft_check_if_dead(t_philo *philo);
+int			ft_check_if_dead(t_program *program);
 
 // routine.c
 void		*ft_routine(void *arg);
@@ -79,6 +79,6 @@ void		ft_eating(t_philo *philo);
 // time.c
 long		ft_get_time(void);
 long		ft_difference_time(t_program *program);
-void		ft_usleep(int time);
+void		ft_usleep(t_program *program, int time);
 
 #endif

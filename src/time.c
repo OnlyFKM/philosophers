@@ -6,19 +6,24 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:45:51 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/18 16:52:12 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:20:42 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	ft_usleep(int time)
+void	ft_usleep(t_program *program, int time)
 {
 	long	total_time;
 
 	total_time = ft_get_time() + time;
 	while (ft_get_time() < total_time)
-		usleep(10);
+	{
+		if (program->finish != 1)
+			usleep(10);
+		else
+			break ;
+	}
 }
 
 long	ft_difference_time(t_program *program)

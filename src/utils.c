@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 12:17:35 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:25:36 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	ft_printf_msg(t_program *program, int id, char *str)
 {
-	pthread_mutex_lock(&(program->write));
-	printf("%lli %d %s\n", (ft_get_time() - program->first_timestamp), id, str);
-	pthread_mutex_unlock(&(program->write));
+	long long	time;
+
+	time = ft_get_time() - program->first_timestamp;
+	if (program->finish != 1)
+	{
+		pthread_mutex_lock(&(program->write));
+		printf("%lli %d %s\n", time, id, str);
+		pthread_mutex_unlock(&(program->write));
+	}
 }
 
 int	ft_are_all_digits(const char *str)

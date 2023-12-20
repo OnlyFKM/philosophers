@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 15:30:12 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/20 13:19:49 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ void	ft_eating(t_philo *philo)
 	pthread_mutex_unlock(&(program->meal_mutex));
 	philo->times_philo_has_eaten++;
 	printf("EL FILOSOFO NUMERO %d HA COMIDO %d VECES\n", philo->philo_id, philo->times_philo_has_eaten);
-	ft_usleep(program->time_eat);
 	ft_check_all_eat(philo);
+	printf("EL VALOR DE FINISH ES --- %d ---\n", program->finish);
+	ft_usleep(program, program->time_eat);
 	pthread_mutex_unlock(&(program->forks[philo->left_fork_id]));
 	pthread_mutex_unlock(&(program->forks[philo->right_fork_id]));
 }
@@ -52,23 +53,26 @@ void	*ft_routine(void *arg)
 {
 	t_program	*program;
 	t_philo		*philo;
-	int			meals;
 
-	meals = 0;
 	philo = (t_philo *)arg;
 	program = philo->program;
 	if (philo->philo_id % 2)
-		ft_usleep(10);
-	while (program->finish != 1)
+		ft_usleep(program, 10);
+	philo->time_last_meal = ft_get_time();
+	while (1)
 	{
-		philo->time_last_meal = ft_get_time();
 		ft_eating(philo);
-		ft_check_if_dead(philo);
-		if (program->finish != 1)
-			ft_printf_msg(program, philo->philo_id, "is sleeping");
-		ft_usleep(program->time_sleep);
-		if (program->finish != 1)
-			ft_printf_msg(program, philo->philo_id, "is thinking");
+		ft_check_if_dead(program);
+		if (program->finish == 1)
+			break ;
+		ft_printf_msg(program, philo->philo_id, "is sleeping");
+		ft_usleep(program, program->time_sleep);
+		if (program->finish == 1)
+			break ;
+		ft_printf_msg(program, philo->philo_id, "is thinking");
+		ft_check_if_dead(program);
+		if (program->finish == 1)
+			break ;
 	}
 	return (NULL);
 }
