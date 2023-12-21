@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/20 13:25:59 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:40:06 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_program
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	forks[200];
 	pthread_mutex_t	write;
+	pthread_mutex_t	finished;
+	pthread_mutex_t	time;
 	t_philo			philo[200];
 }	t_program;
 
@@ -58,6 +60,7 @@ int			ft_check_integers(char *argv[]);
 int			ft_are_all_digits(const char *str);
 long long	ft_atol(const char *str);
 void		ft_printf_msg(t_program *program, int id, char *str);
+int			ft_check_finish(t_program *program);
 
 // init.c
 int			ft_init_all(t_program *program, int argc, char *argv[]);

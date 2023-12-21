@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:13:07 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/20 13:24:44 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:07:42 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_free_philos(t_program *program)
 	}
 	pthread_mutex_destroy((&(program->meal_mutex)));
 	pthread_mutex_destroy((&(program->write)));
+	pthread_mutex_destroy((&(program->finished)));
+	pthread_mutex_destroy((&(program->time)));
 }
 
 void	ft_one_philo(t_program *program)
@@ -49,11 +51,15 @@ int	ft_check_if_dead(t_program *program)
 	long		difference;
 
 	death_time = program->time_death;
+	pthread_mutex_lock(&(program->time));
 	difference = ft_get_time() - program->philo->time_last_meal;
+	pthread_mutex_unlock(&(program->time));
 	if (difference >= death_time)
 	{
 		ft_printf_msg(program, program->philo->philo_id, "died");
+		pthread_mutex_lock(&(program->finished));
 		program->finish = 1;
+		pthread_mutex_unlock(&(program->finished));
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -63,22 +69,25 @@ int	ft_philosopher(t_program *program)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
+	pthread_mutex_lock(&(program->time));
 	program->first_timestamp = ft_get_time();
-	while ((i < program->number_philos) && (program->number_philos > 1))
+	pthread_mutex_unlock(&(program->time));
+	while ((++i < program->number_philos) && (program->number_philos > 1))
 	{
 		if (pthread_create(&(program->philo[i].thread_id), NULL, ft_routine,
 				&(program->philo[i])))
 			return (EXIT_FAILURE);
+		pthread_mutex_lock(&(program->time));
 		program->philo[i].time_last_meal = ft_get_time();
-		i++;
+		pthread_mutex_unlock(&(program->time));
 	}
 	if (program->number_philos == 1)
 		ft_one_philo(program);
 	while (1)
 	{
 		ft_check_if_dead(program);
-		if (program->finish == 1)
+		if (ft_check_finish(program) == EXIT_FAILURE)
 			break ;
 	}
 	ft_free_philos(program);

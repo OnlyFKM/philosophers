@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/19 14:32:52 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:41:05 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int	ft_init_mutex(t_program *program)
 			EXIT_FAILURE);
 	if (pthread_mutex_init(&(program->meal_mutex), NULL))
 		return (printf("Error\nMutex initialization failed for meal\n"),
+			EXIT_FAILURE);
+	if (pthread_mutex_init(&(program->finished), NULL))
+		return (printf("Error\nMutex initialization failed for finished\n"),
+			EXIT_FAILURE);
+	if (pthread_mutex_init(&(program->time), NULL))
+		return (printf("Error\nMutex initialization failed for time\n"),
 			EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

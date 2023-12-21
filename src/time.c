@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:45:51 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/20 13:20:42 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:36:08 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@ void	ft_usleep(t_program *program, int time)
 	total_time = ft_get_time() + time;
 	while (ft_get_time() < total_time)
 	{
+		pthread_mutex_lock(&(program->finished));
 		if (program->finish != 1)
+		{
+			pthread_mutex_unlock(&(program->finished));
 			usleep(10);
+		}
 		else
+		{
+			pthread_mutex_unlock(&(program->finished));
 			break ;
+		}
 	}
 }
 

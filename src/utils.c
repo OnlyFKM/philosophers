@@ -6,11 +6,23 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/21 11:36:25 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:30:50 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+int	ft_check_finish(t_program *program)
+{
+	pthread_mutex_lock(&(program->finished));
+	if (program->finish == 1)
+	{
+		pthread_mutex_unlock(&(program->finished));
+		return (EXIT_FAILURE);
+	}
+	pthread_mutex_unlock(&(program->finished));
+	return (EXIT_SUCCESS);
+}
 
 void	ft_printf_msg(t_program *program, int id, char *str)
 {

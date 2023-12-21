@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/21 11:21:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:04:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	ft_check_all_eat(t_philo *philo)
 		program->all_philos_have_eaten++;
 	if (program->all_philos_have_eaten == program->number_philos)
 	{
+		pthread_mutex_lock(&(program->finished));
 		program->finish = 1;
+		pthread_mutex_unlock(&(program->finished));
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -38,9 +40,11 @@ void	ft_eating(t_philo *philo)
 	ft_printf_msg(program, philo->philo_id, "has taken a fork");
 	pthread_mutex_lock(&(program->meal_mutex));
 	ft_printf_msg(program, philo->philo_id, "is eating");
+	pthread_mutex_lock(&(program->time));
 	philo->time_last_meal = ft_get_time();
-	pthread_mutex_unlock(&(program->meal_mutex));
+	pthread_mutex_unlock(&(program->time));
 	philo->times_philo_has_eaten++;
+	pthread_mutex_unlock(&(program->meal_mutex));
 	//printf("EL FILOSOFO NUMERO %d HA COMIDO %d VECES\n", philo->philo_id, philo->times_philo_has_eaten);
 	ft_check_all_eat(philo);
 	//printf("EL VALOR DE FINISH ES --- %d ---\n", program->finish);
@@ -58,20 +62,17 @@ void	*ft_routine(void *arg)
 	program = philo->program;
 	if (philo->philo_id % 2)
 		ft_usleep(program, 10);
-	philo->time_last_meal = ft_get_time();
 	while (1)
 	{
 		ft_eating(philo);
-		//ft_check_if_dead(program);
-		if (program->finish == 1)
+		if (ft_check_finish(program) == EXIT_FAILURE)
 			break ;
 		ft_printf_msg(program, philo->philo_id, "is sleeping");
 		ft_usleep(program, program->time_sleep);
-		if (program->finish == 1)
+		if (ft_check_finish(program) == EXIT_FAILURE)
 			break ;
 		ft_printf_msg(program, philo->philo_id, "is thinking");
-		//ft_check_if_dead(program);
-		if (program->finish == 1)
+		if (ft_check_finish(program) == EXIT_FAILURE)
 			break ;
 	}
 	return (NULL);
