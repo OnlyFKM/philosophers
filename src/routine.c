@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/20 13:19:49 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:21:02 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_eating(t_philo *philo)
 	philo->time_last_meal = ft_get_time();
 	pthread_mutex_unlock(&(program->meal_mutex));
 	philo->times_philo_has_eaten++;
-	printf("EL FILOSOFO NUMERO %d HA COMIDO %d VECES\n", philo->philo_id, philo->times_philo_has_eaten);
+	//printf("EL FILOSOFO NUMERO %d HA COMIDO %d VECES\n", philo->philo_id, philo->times_philo_has_eaten);
 	ft_check_all_eat(philo);
-	printf("EL VALOR DE FINISH ES --- %d ---\n", program->finish);
+	//printf("EL VALOR DE FINISH ES --- %d ---\n", program->finish);
 	ft_usleep(program, program->time_eat);
 	pthread_mutex_unlock(&(program->forks[philo->left_fork_id]));
 	pthread_mutex_unlock(&(program->forks[philo->right_fork_id]));
@@ -62,7 +62,7 @@ void	*ft_routine(void *arg)
 	while (1)
 	{
 		ft_eating(philo);
-		ft_check_if_dead(program);
+		//ft_check_if_dead(program);
 		if (program->finish == 1)
 			break ;
 		ft_printf_msg(program, philo->philo_id, "is sleeping");
@@ -70,7 +70,7 @@ void	*ft_routine(void *arg)
 		if (program->finish == 1)
 			break ;
 		ft_printf_msg(program, philo->philo_id, "is thinking");
-		ft_check_if_dead(program);
+		//ft_check_if_dead(program);
 		if (program->finish == 1)
 			break ;
 	}
