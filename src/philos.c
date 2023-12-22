@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:13:07 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:49:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:59:07 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_one_philo(t_program *program, pthread_t *threads)
 	pthread_mutex_unlock(&(program->forks[program->philo[0].left_fork_id]));
 	ft_printf_msg(program, program->philo[0].philo_id, "died");
 	ft_free_philos(program, threads);
+	free(threads);
 }
 
 int	ft_check_if_dead(t_program *program)
@@ -64,6 +65,16 @@ int	ft_check_if_dead(t_program *program)
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
+}
+
+void	ft_loop(t_program *program)
+{
+	while (1)
+	{
+		ft_check_if_dead(program);
+		if (ft_check_finish(program) == EXIT_FAILURE)
+			break ;
+	}
 }
 
 int	ft_philosopher(t_program *program)
@@ -87,12 +98,7 @@ int	ft_philosopher(t_program *program)
 	}
 	if (program->number_philos == 1)
 		return (ft_one_philo(program, threads), EXIT_SUCCESS);
-	while (1)
-	{
-		ft_check_if_dead(program);
-		if (ft_check_finish(program) == EXIT_FAILURE)
-			break ;
-	}
+	ft_loop(program);
 	ft_free_philos(program, threads);
 	free(threads);
 	return (EXIT_SUCCESS);
