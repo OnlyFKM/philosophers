@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 13:34:34 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:45:17 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:49:30 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void	ft_printf_msg(t_program *program, int id, char *str)
 		pthread_mutex_unlock(&(program->write));
 	}
 	else
-	{
 		pthread_mutex_unlock(&(program->finished));
-		//ft_free_philos(program);
-	}
 }
 
 int	ft_are_all_digits(const char *str)

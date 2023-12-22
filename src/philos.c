@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:13:07 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:46:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:49:02 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,7 @@ int	ft_philosopher(t_program *program)
 		pthread_mutex_unlock(&(program->time));
 	}
 	if (program->number_philos == 1)
-	{
-		ft_one_philo(program, threads);
-		return (EXIT_SUCCESS);
-	}
+		return (ft_one_philo(program, threads), EXIT_SUCCESS);
 	while (1)
 	{
 		ft_check_if_dead(program);

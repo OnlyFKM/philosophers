@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:00:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:53:14 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_init_mutex(t_program *program)
 
 int	ft_check_init(t_program *program, int argc)
 {
-	if (program->number_philos <= 0)
+	if (program->number_philos <= 0 || program->number_philos >= 250)
 		return (printf("Error\nWrong number of philosophers\n"), EXIT_FAILURE);
 	if (program->time_death <= 0)
 		return (printf("Error\nWrong time to die\n"), EXIT_FAILURE);

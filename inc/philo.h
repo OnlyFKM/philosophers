@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:47:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:52:12 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ typedef struct s_program
 	int				finish;
 	long long		first_timestamp;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t	forks[200];
+	pthread_mutex_t	forks[250];
 	pthread_mutex_t	write;
 	pthread_mutex_t	finished;
 	pthread_mutex_t	meal;
 	pthread_mutex_t	time;
-	t_philo			philo[200];
+	t_philo			philo[250];
 }	t_program;
 
 // main.c

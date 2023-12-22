@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/22 13:12:06 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:50:15 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void	ft_eating(t_philo *philo)
 	pthread_mutex_unlock(&(program->time));
 	philo->times_philo_has_eaten++;
 	pthread_mutex_unlock(&(program->meal_mutex));
-	//printf("EL FILOSOFO NUMERO %d HA COMIDO %d VECES\n", philo->philo_id, philo->times_philo_has_eaten);
 	ft_check_all_eat(philo);
-	//printf("EL VALOR DE FINISH ES --- %d ---\n", program->finish);
 	ft_usleep(program, program->time_eat);
 	pthread_mutex_unlock(&(program->forks[philo->left_fork_id]));
 	pthread_mutex_unlock(&(program->forks[philo->right_fork_id]));
