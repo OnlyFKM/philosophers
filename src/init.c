@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:43:10 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/21 18:41:05 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:00:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ int	ft_init_mutex(t_program *program)
 {
 	int	i;
 
-	i = 0;
-	while (i < program->number_philos)
+	i = -1;
+	while (++i < program->number_philos)
 	{
 		if (pthread_mutex_init(&(program->forks[i]), NULL))
 			return (printf("Error\nMutex initialization failed for forks"),
 				EXIT_FAILURE);
-		i++;
 	}
 	if (pthread_mutex_init(&(program->write), NULL))
 		return (printf("Error\nMutex initialization failed for write\n"),
@@ -51,6 +50,9 @@ int	ft_init_mutex(t_program *program)
 		return (printf("Error\nMutex initialization failed for finished\n"),
 			EXIT_FAILURE);
 	if (pthread_mutex_init(&(program->time), NULL))
+		return (printf("Error\nMutex initialization failed for time\n"),
+			EXIT_FAILURE);
+	if (pthread_mutex_init(&(program->meal), NULL))
 		return (printf("Error\nMutex initialization failed for time\n"),
 			EXIT_FAILURE);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:40:22 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/21 19:04:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:12:06 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@ int	ft_check_all_eat(t_philo *philo)
 	t_program	*program;
 
 	program = philo->program;
+	pthread_mutex_lock(&(program->meal_mutex));
 	if (philo->times_philo_has_eaten == program->number_meals)
+	{
+		pthread_mutex_lock(&(program->time));
 		program->all_philos_have_eaten++;
+		pthread_mutex_unlock(&(program->time));
+	}
+	pthread_mutex_unlock(&(program->meal_mutex));
+	pthread_mutex_lock(&(program->time));
 	if (program->all_philos_have_eaten == program->number_philos)
 	{
 		pthread_mutex_lock(&(program->finished));
 		program->finish = 1;
 		pthread_mutex_unlock(&(program->finished));
+		pthread_mutex_unlock(&(program->time));
 		return (EXIT_FAILURE);
 	}
+	pthread_mutex_unlock(&(program->time));
 	return (EXIT_SUCCESS);
 }
 

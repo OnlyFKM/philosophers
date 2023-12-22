@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:15 by frcastil          #+#    #+#             */
-/*   Updated: 2023/12/21 18:40:06 by frcastil         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:47:38 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_philos
 	int					right_fork_id;
 	int					times_philo_has_eaten;
 	long long			time_last_meal;
-	pthread_t			thread_id;
 }	t_philo;
 
 typedef struct s_program
@@ -48,6 +47,7 @@ typedef struct s_program
 	pthread_mutex_t	forks[200];
 	pthread_mutex_t	write;
 	pthread_mutex_t	finished;
+	pthread_mutex_t	meal;
 	pthread_mutex_t	time;
 	t_philo			philo[200];
 }	t_program;
@@ -71,8 +71,8 @@ void		ft_init_philo(t_program *program);
 
 // philos.c
 int			ft_philosopher(t_program *program);
-void		ft_one_philo(t_program *program);
-void		ft_free_philos(t_program *program);
+void		ft_one_philo(t_program *program, pthread_t *threads);
+void		ft_free_philos(t_program *program, pthread_t *threads);
 int			ft_check_if_dead(t_program *program);
 
 // routine.c
